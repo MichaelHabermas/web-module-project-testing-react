@@ -2,6 +2,7 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { act } from 'react-dom/test-utils';
 
 import Display from './../Display';
 
@@ -43,8 +44,8 @@ test('renders without errors', () => {
 test('displays show component when fetch button is pushed', async () => {
 	render(<Display />);
 	mockFetchShow.mockResolvedValueOnce(testShow);
-	const button = screen.getByRole('button');
 
+	const button = screen.getByRole('button');
 	userEvent.click(button);
 
 	await waitFor(() => {
@@ -56,10 +57,9 @@ test('displays show component when fetch button is pushed', async () => {
 //5. Test that when the fetch button is pressed, the amount of select options rendered is equal to the amount of seasons in your test data.
 test('get correct amount of select options when fetch button is pushed', async () => {
 	render(<Display />);
-
 	mockFetchShow.mockResolvedValueOnce(testShow);
-	const button = screen.queryByTestId('display-btn');
 
+	const button = screen.queryByTestId('display-btn');
 	userEvent.click(button);
 
 	await waitFor(() => {
@@ -71,15 +71,16 @@ test('get correct amount of select options when fetch button is pushed', async (
 //6. Notice the optional functional prop passed in to the Display component client code. Test that when the fetch button is pressed, this function is called.
 test('function is called when fetch button is pushed', async () => {
 	const mockFunc = jest.fn();
-	render(<Display displayFunc={mockFunc} />);
 
+	render(<Display displayFunc={mockFunc} />);
 	mockFetchShow.mockResolvedValueOnce(testShow);
 
-	const button = screen.getByRole('button');
-
-	userEvent.click(button);
-
-	await waitFor(() => {
-		expect(mockFunc).toBeCalledTimes(1);
+	await act(async () => {
+		const button = screen.getByRole('button');
+		userEvent.click(button);
 	});
+
+	// await waitFor(() => {
+	expect(mockFunc).toBeCalledTimes(1);
+	// });
 });
