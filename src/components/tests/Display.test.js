@@ -39,7 +39,7 @@ test('renders without errors', () => {
 });
 
 //4. Test that when the fetch button is pressed, the show component will display. Make sure to account for the api call and change of state in building your test.
-test('renders without errors', async () => {
+test('displays show component when fetch button is pushed', async () => {
 	render(<Display show={testShow} />);
 
 	const button = screen.getByRole('button');
@@ -53,7 +53,7 @@ test('renders without errors', async () => {
 });
 
 //5. Test that when the fetch button is pressed, the amount of select options rendered is equal to the amount of seasons in your test data.
-test('renders without errors', async () => {
+test('get correct amount of select options when fetch button is pushed', async () => {
 	render(<Display show={testShow} />);
 	const button = screen.getByRole('button');
 
@@ -70,7 +70,7 @@ test('renders without errors', async () => {
 });
 
 //6. Notice the optional functional prop passed in to the Display component client code. Test that when the fetch button is pressed, this function is called.
-test('renders without errors', async () => {
+test('function is called when fetch button is pushed', async () => {
 	const mockFunc = jest.fn();
 
 	render(<Display displayFunc={mockFunc} />);
