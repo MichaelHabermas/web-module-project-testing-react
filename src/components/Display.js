@@ -33,7 +33,9 @@ const Display = props => {
 			/>
 			<br />
 			{!show ? (
-				<button onClick={handleClick}>Press to Get Show Data</button>
+				<button data-testid="display-btn" onClick={handleClick}>
+					Press to Get Show Data
+				</button>
 			) : (
 				<Show show={show} selectedSeason={selectedSeason} handleSelect={handleSelect} />
 			)}
