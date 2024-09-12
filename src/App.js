@@ -1,22 +1,24 @@
-import React, { useState } from "react";
+import React from 'react';
 
-import Display from "./components/Display";
+import Display from './components/Display';
 
-import "./styles.css";
+import './styles.css';
 
 export default function App() {
-  const displayFunc = (data)=> {
-    console.log(data);
-  }
+	const displayFunc = data => {
+		console.log(data);
+	};
 
-  return (
-    <div>
-      <nav className="navbar navbar-dark bg-dark">
-        <a className="navbar-brand" href="#"><img width="40px" src="./Lambda-Logo-Red.png"/> Lambda Integration Testing Challenge</a>
-      </nav>
-      <div className="App">
-        <Display displayFun={displayFunc}/>
-      </div>
-    </div>
-  );
+	return (
+		<div>
+			<nav className="navbar navbar-dark bg-dark">
+				<a className="navbar-brand" href="/">
+					<img width="40px" src="./Lambda-Logo-Red.png" alt="logo" /> Lambda Integration Testing Challenge
+				</a>
+			</nav>
+			<div className="App">
+				<Display displayFunc={displayFunc} />
+			</div>
+		</div>
+	);
 }
